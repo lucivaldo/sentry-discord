@@ -55,7 +55,7 @@ export default (req, res) => {
   }
 
   const projectSlug = req.body.project
-  const webhookURL = webhooksList[projectSlug.toUpperCase().replace(/-/g, '_')] || webhooksList['default']
+  const webhookURL = process.env[projectSlug.toUpperCase().replace(/-/g, '_')] || process.env['default']
 
   axios.post(webhookURL, payload)
   .then(() => {
